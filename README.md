@@ -1,7 +1,11 @@
 SvelteKit Stripe Integration
-----------------------------
+============================
 
-This demo application implements subscriptions using SvelteKit and Stripe Checkout. 
+The SvelteKit demo template comes with an awesome counter application built in. It would be better though if it was a subscription SAAS counter. That's what this repo does. 
+
+**Check it out at https://sveltekit-stripe.netlify.app/.**
+
+This demo application implements subscriptions using [SvelteKit](http://kit.svelte.dev/) and [Stripe Checkout](https://stripe.com/payments/checkout). 
 [It is based on this guide.](https://stripe.com/docs/billing/subscriptions/checkout)
 
 ## How to use.

@@ -2,6 +2,10 @@
   import Counter from '$lib/Counter/index.svelte';
 </script>
 
+<svelte:head>
+	<title>Counter</title>
+</svelte:head>
+
 <section>
   <Counter />
 </section>

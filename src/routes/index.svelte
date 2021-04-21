@@ -13,8 +13,9 @@
 
 <StripeProvider>
 	<section>
-	<Pricing />
-</section>
+		<h2>Choose your plan and start counting!</h2>
+		<Pricing />
+	</section>
 </StripeProvider>
 
 <style>
@@ -24,5 +25,11 @@
 		justify-content: center;
 		align-items: center;
 		flex: 1;
+	}
+
+	h2 {
+		color: var(--heading-color);
+		font-weight: bold;
+		font-size: 2rem;
 	}
 </style>
