@@ -1,0 +1,28 @@
+{
+  "name": "sveltekit-stripe",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "start": "svelte-kit start",
+    "stripe:init": "node scripts/createProductsOnStripe.js"
+  },
+  "devDependencies": {
+    "@stripe/stripe-js": "^1.13.2",
+    "@sveltejs/adapter-node": "next",
+    "@sveltejs/kit": "next",
+    "dotenv": "^8.2.0",
+    "stripe": "^8.144.0",
+    "svelte": "^3.29.0",
+    "svelte-preprocess": "^4.0.0",
+    "tslib": "^2.0.0",
+    "typescript": "^4.0.0",
+    "vite": "^2.1.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "@fontsource/fira-mono": "^4.2.2",
+    "@lukeed/uuid": "^2.0.0",
+    "cookie": "^0.4.1"
+  }
+}
