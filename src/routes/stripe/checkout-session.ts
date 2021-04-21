@@ -22,8 +22,8 @@ export async function post(req: EndpointRequest): Promise<EndpointResponse> {
         price: priceId,
         quantity: 1
       }],
-      success_url: 'http://localhost:3000/counter?sessionId={CHECKOUT_SESSION_ID}',
-      cancel_url: 'http://localhost:3000/'
+      success_url: `http://${req.host}/counter?sessionId={CHECKOUT_SESSION_ID}`,
+      cancel_url: `http://${req.host}/`
     });
     return {
       status: 200,
