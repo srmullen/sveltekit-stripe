@@ -1,32 +1,6 @@
-import Stripe from 'stripe';
-import dotenv from 'dotenv';
+import stripe from './_stripe';
 
-dotenv.config();
-
-const stripe = new Stripe(process.env["STRIPE_SECRET_KEY"], {
-  apiVersion: '2020-08-27'
-});
-
-type Request<Context = any> = {
-  host: string;
-  method: 'GET';
-  headers: Record<string, string>;
-  path: string;
-  params: Record<string, string | string[]>;
-  query: URLSearchParams;
-  // body: string | Buffer | ReadOnlyFormData;
-  body: any;
-  rawBody: any;
-  context: Context; // see getContext, below
-};
-
-type Response = {
-  status?: number;
-  headers?: Record<string, string>;
-  body?: any;
-};
-
-export async function post(req: Request): Promise<Response> {
+export async function post(req: EndpointRequest): Promise<EndpointResponse> {
   if (typeof req.body.priceId !== 'string') {
     return {
       status: 400,
@@ -48,8 +22,8 @@ export async function post(req: Request): Promise<Response> {
         price: priceId,
         quantity: 1
       }],
-      success_url: 'http://localhost:3000/dashboard?sessionId={CHECKOUT_SESSION_ID}',
-      cancel_url: 'http://localhost:3000/pricing'
+      success_url: 'http://localhost:3000/counter?sessionId={CHECKOUT_SESSION_ID}',
+      cancel_url: 'http://localhost:3000/'
     });
     return {
       status: 200,

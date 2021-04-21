@@ -12,12 +12,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 const plans = [
   {
     product: {
-      id: '',
       name: 'Free Plan',
       description: 'The bare minimum.'
     },
     price: {
-      id: '',
       currency: 'usd',
       unit_amount: 0,
       recurring: {
@@ -33,7 +31,6 @@ const plans = [
   },
   {
     product: {
-      id: '',
       name: 'Basic Plan',
       description: 'The basic services.'
     },
@@ -56,7 +53,6 @@ const plans = [
       description: 'Everything in the basic plan and then some.'
     },
     price: {
-      id: '',
       currency: 'usd',
       unit_amount: 1500,
       recurring: {

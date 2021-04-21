@@ -1,5 +1,9 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { goto } from '$app/navigation';
+  import { onMount, getContext } from 'svelte';
+
+  const { getStripe } = getContext('stripe');
+  const stripe = getStripe();
 
   let plans = [];
 
@@ -12,8 +16,22 @@
     return pennies / 100;
   }
 
-  async function chooseSubscription(plan) {
-    console.log(plan);
+  async function choosePlan(plan) {
+    if (plan.price.id) {
+      const res = await fetch('/stripe/checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ priceId: plan.price.id })
+      });
+      const { sessionId } = await res.json();
+      stripe.redirectToCheckout({
+        sessionId
+      });
+    } else {
+      goto('/counter');
+    }
   }
 </script>
 
@@ -32,7 +50,7 @@
         <div class="price">
           <span class="dollars">${penniesToDollars(plan.price.unit_amount)}</span> / {plan.price.recurring.interval}
         </div>
-        <button on:click={() => chooseSubscription(plan)}>Choose</button>
+        <button on:click={() => choosePlan(plan)}>Choose</button>
       </div>
       <div class="divider"></div>
       <div class="bottom">

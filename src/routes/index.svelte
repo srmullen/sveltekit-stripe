@@ -4,15 +4,18 @@
 
 <script lang="ts">
 	import Pricing from '$lib/Pricing/index.svelte';
+	import StripeProvider from '$lib/stripe/StripeProvider.svelte';
 </script>
 
 <svelte:head>
 	<title>Pricing</title>
 </svelte:head>
 
-<section>
+<StripeProvider>
+	<section>
 	<Pricing />
 </section>
+</StripeProvider>
 
 <style>
 	section {

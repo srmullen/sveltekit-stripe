@@ -11,6 +11,7 @@
     "@stripe/stripe-js": "^1.13.2",
     "@sveltejs/adapter-node": "next",
     "@sveltejs/kit": "next",
+    "cookie": "^0.4.1",
     "dotenv": "^8.2.0",
     "stripe": "^8.144.0",
     "svelte": "^3.29.0",
@@ -22,7 +23,6 @@
   "type": "module",
   "dependencies": {
     "@fontsource/fira-mono": "^4.2.2",
-    "@lukeed/uuid": "^2.0.0",
-    "cookie": "^0.4.1"
+    "@lukeed/uuid": "^2.0.0"
   }
 }
