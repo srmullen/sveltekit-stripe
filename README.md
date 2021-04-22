@@ -35,6 +35,8 @@ To test the hook locally see this guide https://stripe.com/docs/webhooks/test
 
 The stripe webhook endpoint is https://localhost:3000/stripe/webhook. That is where you'll want to forward stripe events.
 
+Verify webhook signatures by adding STRIPE_WEBHOOK_SECRET to your .env file.
+
 ## See the demo
 
 https://sveltekit-stripe.netlify.app
