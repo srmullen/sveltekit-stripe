@@ -4,7 +4,6 @@
 	export async function load({ fetch }) {
     const res = await fetch('/plans.json');
     const plans = await res.json();
-    console.log(plans);
     return {
       status: 200,
       props: {
