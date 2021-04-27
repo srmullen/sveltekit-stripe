@@ -1,16 +1,11 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import { onMount, getContext } from 'svelte';
+  import { getContext } from 'svelte';
 
   const { getStripe } = getContext('stripe');
   const stripe = getStripe();
 
-  let plans = [];
-
-  onMount(async () => {
-    const res = await fetch('/plans.json');
-    plans = await res.json();
-  });
+  export let plans = [];
 
   function penniesToDollars(pennies: number) {
     return pennies / 100;
