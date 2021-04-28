@@ -1,8 +1,9 @@
+import type { Request, Response } from '@sveltejs/kit';
 import stripe from './_stripe';
 
 const WEBHOOK_SECRET = process.env['STRIPE_WEBHOOK_SECRET'];
 
-export async function post(req: EndpointRequest): Promise<EndpointResponse> {
+export async function post(req: Request<any, { data: any, type: any }>): Promise<Response> {
   let data;
   let eventType;
   if (WEBHOOK_SECRET) {
@@ -10,7 +11,7 @@ export async function post(req: EndpointRequest): Promise<EndpointResponse> {
     const signature = req.headers['stripe-signature'];
     try {
       event = stripe.webhooks.constructEvent(
-        req.rawBody,
+        req.rawBody as string,
         signature,
         WEBHOOK_SECRET
       )
