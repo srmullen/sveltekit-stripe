@@ -40,3 +40,5 @@ Verify webhook signatures by adding STRIPE_WEBHOOK_SECRET to your .env file.
 ## See the demo
 
 https://sveltekit-stripe.netlify.app
+
+(Read more about the implementation here.)[https://www.srmullen.com/articles/sveltekit-stripe-integration]
