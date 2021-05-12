@@ -1,8 +1,8 @@
 node_modules
 .DS_Store
-.svelte
 .env
 /build
 /functions
-src/routes/plansData.json
+/src/routes/plansData.json
 .netlify
+/.svelte-kit

@@ -9,12 +9,9 @@
   },
   "devDependencies": {
     "@stripe/stripe-js": "^1.13.2",
-    "@sveltejs/adapter-netlify": "^1.0.0-next.10",
-    "@sveltejs/adapter-node": "^1.0.0-next.17",
-    "@sveltejs/kit": "^1.0.0-next.92",
-    "cookie": "^0.4.1",
-    "dotenv": "^8.2.0",
-    "stripe": "^8.144.0",
+    "@sveltejs/adapter-netlify": "^1.0.0-next.12",
+    "@sveltejs/adapter-node": "^1.0.0-next.20",
+    "@sveltejs/kit": "^1.0.0-next.105",
     "svelte": "^3.29.0",
     "svelte-preprocess": "^4.0.0",
     "tslib": "^2.0.0",
@@ -24,6 +21,9 @@
   "type": "module",
   "dependencies": {
     "@fontsource/fira-mono": "^4.2.2",
-    "@lukeed/uuid": "^2.0.0"
+    "@lukeed/uuid": "^2.0.0",
+    "cookie": "^0.4.1",
+    "dotenv": "^9.0.2",
+    "stripe": "^8.148.0"
   }
 }
