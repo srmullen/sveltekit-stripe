@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Counter from '$lib/Counter/index.svelte';
+	import Counter from '$lib/Counter/index.svelte';
 </script>
 
 <svelte:head>
@@ -7,11 +7,11 @@
 </svelte:head>
 
 <section>
-  <Counter />
+	<Counter />
 </section>
 
 <style>
-  section {
+	section {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
