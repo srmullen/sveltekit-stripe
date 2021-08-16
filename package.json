@@ -10,9 +10,9 @@
 	},
 	"devDependencies": {
 		"@stripe/stripe-js": "^1.13.2",
-		"@sveltejs/adapter-netlify": "^1.0.0-next.12",
-		"@sveltejs/adapter-node": "^1.0.0-next.20",
-		"@sveltejs/kit": "^1.0.0-next.105",
+		"@sveltejs/adapter-netlify": "^1.0.0-next.27",
+		"@sveltejs/adapter-node": "^1.0.0-next.42",
+		"@sveltejs/kit": "^1.0.0-next.151",
 		"prettier": "^2.3.0",
 		"prettier-plugin-svelte": "^2.3.0",
 		"svelte": "^3.29.0",
