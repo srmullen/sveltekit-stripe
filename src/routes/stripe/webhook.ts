@@ -16,9 +16,10 @@ export async function post(req: Request<any, { data: any; type: any }>): Promise
 		} catch (err) {
 			return {
 				status: 500,
-				body: {
+				headers: {},
+				body: JSON.stringify({
 					error: err
-				}
+				})
 			};
 		}
 	} else {
@@ -50,8 +51,9 @@ export async function post(req: Request<any, { data: any; type: any }>): Promise
 
 	return {
 		status: 200,
-		body: {
+		headers: {},
+		body: JSON.stringify({
 			message: 'Success'
-		}
+		})
 	};
 }
