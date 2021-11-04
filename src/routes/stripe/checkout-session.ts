@@ -5,11 +5,12 @@ export async function post(req: Request<any, { priceId: string }>): Promise<Resp
 	if (typeof req.body.priceId !== 'string') {
 		return {
 			status: 400,
-			body: {
+			headers: {},
+			body: JSON.stringify({
 				error: {
 					message: 'priceId is required'
 				}
-			}
+			})
 		};
 	}
 
@@ -30,16 +31,18 @@ export async function post(req: Request<any, { priceId: string }>): Promise<Resp
 		});
 		return {
 			status: 200,
-			body: {
+			headers: {},
+			body: JSON.stringify({
 				sessionId: session.id
-			}
+			})
 		};
 	} catch (err) {
 		return {
 			status: 500,
-			body: {
+			headers: {},
+			body: JSON.stringify({
 				error: err
-			}
+			})
 		};
 	}
 }
