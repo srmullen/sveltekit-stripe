@@ -8,9 +8,15 @@ export async function post(req: Request<any, { data: any; type: any }>): Promise
 	let eventType;
 	if (WEBHOOK_SECRET) {
 		let event;
+
+		// SvelteKit may sometimes modify the incoming request body
+		// However, Stripe requires the exact body it sends to construct an Event
+		// To avoid unintended SvelteKit modifications, we can use this workaround:
+		const payload = Buffer.from(req.rawBody);
+
 		const signature = req.headers['stripe-signature'];
 		try {
-			event = stripe.webhooks.constructEvent(req.rawBody as string, signature, WEBHOOK_SECRET);
+			event = stripe.webhooks.constructEvent(payload, signature, WEBHOOK_SECRET);
 			data = event.data;
 			eventType = event.type;
 		} catch (err) {
