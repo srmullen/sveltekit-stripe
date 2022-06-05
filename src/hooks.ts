@@ -6,7 +6,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const cookies = cookie.parse(event.request.headers.get('cookie') || '');
 
 	const userId = cookies.userid || nanoid();
-	event.locals.userid = userId
+	event.locals.userid = userId;
 
 	const response = await resolve(event);
 

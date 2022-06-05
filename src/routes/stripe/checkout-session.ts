@@ -1,14 +1,12 @@
-
 import type { RequestEvent, RequestHandler } from '@sveltejs/kit';
 import stripe from './_stripe';
 
 export const post: RequestHandler = async (event: RequestEvent) => {
+	const req = event.request;
+	const formData = await req.formData();
+	const priceId = formData.get('priceId');
 
-	const req = event.request
-	const formData = await req.formData()
-	const priceId = formData.get('priceId')
-
-	console.log("priceId=" + priceId)
+	console.log('priceId=' + priceId);
 
 	if (typeof priceId !== 'string') {
 		return {
@@ -22,7 +20,7 @@ export const post: RequestHandler = async (event: RequestEvent) => {
 		};
 	}
 
-	console.log("event.url.host=" + event.url.host)
+	console.log('event.url.host=' + event.url.host);
 
 	try {
 		const session = await stripe.checkout.sessions.create({
@@ -53,7 +51,7 @@ export const post: RequestHandler = async (event: RequestEvent) => {
 			})
 		};
 	}
-}
+};
 
 // export async function post(req: Request<any, { priceId: string }>): Promise<Response> {
 // 	if (typeof req.body.priceId !== 'string') {

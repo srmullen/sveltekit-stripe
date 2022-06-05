@@ -17,7 +17,7 @@ const config = {
 		// target: '#svelte'
 		methodOverride: {
 			allowed: ['PUT', 'PATCH', 'DELETE']
-		  }
+		}
 	}
 };
 

@@ -1,4 +1,3 @@
-
 import type { RequestEvent, RequestHandler } from '@sveltejs/kit';
 import stripe from './_stripe';
 
@@ -16,9 +15,9 @@ function toBuffer(ab: ArrayBuffer): Buffer {
 
 export const post: RequestHandler = async (event: RequestEvent) => {
 	// export async function post(req: Request<any, { data: any; type: any }>): Promise<Response> {
-	const req = event.request
+	const req = event.request;
 	// let data;
-	 let eventType:string;
+	let eventType: string;
 	if (WEBHOOK_SECRET) {
 		// let event;
 
@@ -34,7 +33,7 @@ export const post: RequestHandler = async (event: RequestEvent) => {
 		try {
 			const event = stripe.webhooks.constructEvent(payload, signature, WEBHOOK_SECRET);
 			const data = event.data;
-			 eventType = event.type;
+			eventType = event.type;
 		} catch (err) {
 			return {
 				status: 500,
@@ -78,4 +77,4 @@ export const post: RequestHandler = async (event: RequestEvent) => {
 			message: 'Success'
 		})
 	};
-}
+};
