@@ -3,11 +3,10 @@
 
 	export async function load({ fetch }) {
 		const res = await fetch('/plans.json');
-		const plans = await res.json();
 		return {
 			status: 200,
 			props: {
-				plans
+				plans: res.ok && (await res.json())
 			}
 		};
 	}

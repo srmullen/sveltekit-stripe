@@ -5,8 +5,11 @@ import stripe from './_stripe';
 export const post: RequestHandler = async (event: RequestEvent) => {
 
 	const req = event.request
-	const formData =await req.formData()
+	const formData = await req.formData()
 	const priceId = formData.get('priceId')
+
+	console.log("priceId=" + priceId)
+
 	if (typeof priceId !== 'string') {
 		return {
 			status: 400,
@@ -18,7 +21,9 @@ export const post: RequestHandler = async (event: RequestEvent) => {
 			})
 		};
 	}
-	
+
+	console.log("event.url.host=" + event.url.host)
+
 	try {
 		const session = await stripe.checkout.sessions.create({
 			mode: 'subscription',
