@@ -2,11 +2,22 @@ import type { RequestEvent, RequestHandler } from '@sveltejs/kit';
 import stripe from './_stripe';
 
 export const post: RequestHandler = async (event: RequestEvent) => {
-	const req = event.request;
-	const formData = await req.formData();
-	const priceId = formData.get('priceId');
 
+	console.log('checkout-session');
+
+	const req = event.request;
+
+	const formData = await req.formData();
+	console.log(formData)
+
+	const priceId = formData.get('priceId');
 	console.log('priceId=' + priceId);
+
+	formData.forEach((v, k) => {
+		console.log(k)
+		console.log(v)
+	})
+
 
 	if (typeof priceId !== 'string') {
 		return {
