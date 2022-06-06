@@ -1,8 +1,14 @@
-import type { Request, Response } from '@sveltejs/kit';
+import type { RequestEvent, RequestHandler } from '@sveltejs/kit';
 import stripe from './_stripe';
 
-export async function post(req: Request<any, { priceId: string }>): Promise<Response> {
-	if (typeof req.body.priceId !== 'string') {
+export const post: RequestHandler = async (event: RequestEvent) => {
+
+	const req = event.request;
+
+	const formData = await req.json();
+	const priceId = formData.priceId;
+
+	if (typeof priceId !== 'string') {
 		return {
 			status: 400,
 			headers: {},
@@ -14,8 +20,6 @@ export async function post(req: Request<any, { priceId: string }>): Promise<Resp
 		};
 	}
 
-	const priceId = req.body.priceId;
-
 	try {
 		const session = await stripe.checkout.sessions.create({
 			mode: 'subscription',
@@ -26,8 +30,8 @@ export async function post(req: Request<any, { priceId: string }>): Promise<Resp
 					quantity: 1
 				}
 			],
-			success_url: `http://${req.host}/counter?sessionId={CHECKOUT_SESSION_ID}`,
-			cancel_url: `http://${req.host}/`
+			success_url: `http://${event.url.host}/counter?sessionId={CHECKOUT_SESSION_ID}`,
+			cancel_url: `http://${event.url.host}/`
 		});
 		return {
 			status: 200,

@@ -1,13 +1,15 @@
 <script context="module" lang="ts">
-	export const prerender = true;
+	//	export const prerender = true;
 
 	export async function load({ fetch }) {
 		const res = await fetch('/plans.json');
-		const plans = await res.json();
+		let plans = [];
+		if (res.ok) plans = await res.json();
+
 		return {
 			status: 200,
 			props: {
-				plans
+				plans: plans
 			}
 		};
 	}

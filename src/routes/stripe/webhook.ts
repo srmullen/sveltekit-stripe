@@ -1,23 +1,38 @@
-import type { Request, Response } from '@sveltejs/kit';
+import type { RequestEvent, RequestHandler } from '@sveltejs/kit';
 import stripe from './_stripe';
 
+// todo: orefalo - properly gatekeep this variable
 const WEBHOOK_SECRET = process.env['STRIPE_WEBHOOK_SECRET'];
 
-export async function post(req: Request<any, { data: any; type: any }>): Promise<Response> {
-	let data;
-	let eventType;
+function toBuffer(ab: ArrayBuffer): Buffer {
+	const buf = Buffer.alloc(ab.byteLength);
+	const view = new Uint8Array(ab);
+	for (let i = 0; i < buf.length; i++) {
+		buf[i] = view[i];
+	}
+	return buf;
+}
+
+export const post: RequestHandler = async (event: RequestEvent) => {
+	// export async function post(req: Request<any, { data: any; type: any }>): Promise<Response> {
+	const req = event.request;
+	// let data;
+	let eventType: string;
 	if (WEBHOOK_SECRET) {
-		let event;
+		// let event;
+
+		const _rawBody = await req.arrayBuffer();
+		const payload = toBuffer(_rawBody);
 
 		// SvelteKit may sometimes modify the incoming request body
 		// However, Stripe requires the exact body it sends to construct an Event
 		// To avoid unintended SvelteKit modifications, we can use this workaround:
-		const payload = Buffer.from(req.rawBody);
+		// const payload = Buffer.from(req.rawBody);
 
-		const signature = req.headers['stripe-signature'];
+		const signature = req.headers.get('stripe-signature');
 		try {
-			event = stripe.webhooks.constructEvent(payload, signature, WEBHOOK_SECRET);
-			data = event.data;
+			const event = stripe.webhooks.constructEvent(payload, signature, WEBHOOK_SECRET);
+			const data = event.data;
 			eventType = event.type;
 		} catch (err) {
 			return {
@@ -29,8 +44,8 @@ export async function post(req: Request<any, { data: any; type: any }>): Promise
 			};
 		}
 	} else {
-		data = req.body.data;
-		eventType = req.body.type;
+		// data = req.body.data;
+		eventType = (await req.formData()).get('type').toString();
 	}
 
 	switch (eventType) {
@@ -62,4 +77,4 @@ export async function post(req: Request<any, { data: any; type: any }>): Promise
 			message: 'Success'
 		})
 	};
-}
+};
