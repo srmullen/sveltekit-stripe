@@ -1,5 +1,12 @@
 # SvelteKit Stripe Integration
 
+**Update in this branch:**
+
+* code is up to date with the latest versions of sveltekit & stripe apis
+* enjoy ;-)
+
+
+
 The SvelteKit demo template comes with an awesome counter application built in. It would be better though if it was a subscription SAAS counter. That's what this repo does.
 
 **Check it out at https://sveltekit-stripe.netlify.app/.**

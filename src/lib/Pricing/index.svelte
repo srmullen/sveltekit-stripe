@@ -13,6 +13,8 @@
 
 	async function choosePlan(plan) {
 		if (plan.price.id) {
+			console.log(JSON.stringify({ priceId: plan.price.id }));
+
 			const res = await fetch('/stripe/checkout-session', {
 				method: 'POST',
 				headers: {

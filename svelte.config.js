@@ -14,7 +14,10 @@ const config = {
 		adapter: node(),
 
 		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte'
+		// target: '#svelte'
+		methodOverride: {
+			allowed: ['PUT', 'PATCH', 'DELETE']
+		}
 	}
 };
 
