@@ -1,5 +1,5 @@
 import type { RequestEvent, RequestHandler } from '@sveltejs/kit';
-import stripe from './_stripe';
+import stripe from '../../../../lib/stripe/stripe';
 
 // todo: orefalo - properly gatekeep this variable
 const WEBHOOK_SECRET = process.env['STRIPE_WEBHOOK_SECRET'];

@@ -1,31 +1,49 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { getContext } from 'svelte';
 
-	const { getStripe } = getContext('stripe');
-	const stripe = getStripe();
+	// Typer interface for the plan data
+	interface Plan {
+		product: {
+			id?: string;
+			name: string;
+			description: string;
+		};
+		price: {
+			id?: string;
+			currency: string;
+			unit_amount: number;
+			recurring: {
+				interval: string;
+			};
+		};
+		includes: string[];
+	}
 
-	export let plans = [];
+	export let plans: Plan[] = [];
 
 	function penniesToDollars(pennies: number) {
 		return pennies / 100;
 	}
 
-	async function choosePlan(plan) {
+	async function choosePlan(plan: Plan) {
+		console.log('Choosing plan...', plan);
 		if (plan.price.id) {
 			console.log(JSON.stringify({ priceId: plan.price.id }));
 
-			const res = await fetch('/stripe/checkout-session', {
+			const res = await fetch('/api/stripe/checkout-session', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({ priceId: plan.price.id })
+				body: JSON.stringify({
+					priceId: plan.price.id
+				})
 			});
-			const { sessionId } = await res.json();
-			stripe.redirectToCheckout({
-				sessionId
-			});
+
+			const { stripeSessionUrl } = await res.json();
+			console.log(`Redirecting to stripeSessionUrl: ${stripeSessionUrl}`);
+
+			goto(stripeSessionUrl);
 		} else {
 			goto('/counter');
 		}
