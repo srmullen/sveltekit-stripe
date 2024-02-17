@@ -20,8 +20,7 @@
 		"autoprefixer": "^10.4.14",
 		"prettier": "^3.0.3",
 		"prettier-plugin-svelte": "^3.1.0",
-		"stripe": "^14.16.0",
-		"svelte": "^4.2.2",
+		"svelte": "^4.2.11",
 		"svelte-check": "^3.4.3",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
@@ -30,6 +29,7 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/fira-mono": "4.5.8",
+		"stripe": "^14.16.0",
 		"nanoid": "4.0.0",
 		"cookie": "0.5.0",
 		"dotenv": "16.0.1"
