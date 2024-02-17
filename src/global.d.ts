@@ -2,6 +2,6 @@
 
 declare namespace App {
 	export interface Locals {
-		userid: string;
+		userId: string;
 	}
 }

@@ -1,4 +1,4 @@
-import plans from './plansData.json';
+import * as plans from './plansData.json';
 
 export async function get() {
 	return {

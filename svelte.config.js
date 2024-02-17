@@ -1,11 +1,11 @@
-import sveltePreprocess from 'svelte-preprocess';
 import node from '@sveltejs/adapter-node';
+import { vitePreprocess } from '@sveltejs/kit/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://github.com/sveltejs/svelte-preprocess
+	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
-	preprocess: sveltePreprocess(),
+	preprocess: [vitePreprocess({})],
 
 	kit: {
 		// By default, `npm run build` will create a standard Node app.
@@ -13,11 +13,7 @@ const config = {
 		// specifying a different adapter
 		adapter: node(),
 
-		// hydrate the <div id="svelte"> element in src/app.html
-		// target: '#svelte'
-		methodOverride: {
-			allowed: ['PUT', 'PATCH', 'DELETE']
-		}
+		
 	}
 };
 
